@@ -15,13 +15,12 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
-# Added for RHEL
+# Added for RHEL <nkadelgarcia-consultant@scholastic.com>
 %global nagios_plugindir %{_libdir}/nagios/plugins
-
 
 Name:           nagios-plugins-mysql_health
 Version:        2.1.8.2
-Release:        6.3
+Release:        0.1%{?dist}
 License:        GPL-2.0+
 Summary:        Check various parameters of a MySQL database
 Url:            http://labs.consol.de/lang/en/nagios/check_mysql_health/
@@ -29,6 +28,7 @@ Group:          System/Monitoring
 Source0:        check_mysql_health-%{version}.tar.gz
 #BuildRequires:  nagios-rpm-macros
 Requires:       mysql-client
+# RHEL does not support "Requires" <nkadelgarcia-consultant@scholastic.com>
 #Recommends:     perl(DBD::mysql)
 #Recommends:     perl(DBI)
 Requires:       perl(DBD::mysql)
@@ -69,6 +69,8 @@ rm -rf %{buildroot}
 %{nagios_plugindir}/*
 
 %changelog
+* Thu Feb  6 2014 Nico Kadel-Garcia <nkadelgarcia-consultant@scholastic.com>
+- Tweak Requires, nagios_plugindir, and release to be more RHEL compatible
 * Fri Jan 25 2013 lars@linux-schulserver.de
 - add COPYING to doc
 * Wed Jan 23 2013 lars@linux-schulserver.de
